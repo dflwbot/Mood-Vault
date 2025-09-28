@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodVault - Anonymous Mental Health Economy | Live Demo</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js" onerror="loadEthersFallback()"></script>
+    <script>
+        function loadEthersFallback() {
+            console.log('Primary ethers CDN failed, trying fallback...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js';
+            script.onload = () => console.log('Fallback ethers loaded successfully');
+            script.onerror = () => console.error('All ethers CDNs failed');
+            document.head.appendChild(script);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 MoodVault</h1>
+            <p>Anonymous Mental Health Data Economy</p>
+            <div class="github-badge">
+                <a href="https://github.com/Phantagyro/Mood-Vault" target="_blank" rel="noopener">
+                    <span>📁 View on GitHub</span>
+                </a>
+            </div>
+            <div id="demoModeIndicator" class="demo-indicator" style="display: none;">
+                <span>🎮 Demo Mode - Contract not deployed</span>
+            </div>
+            <div class="wallet-section">
+                <button id="connectWallet" class="btn-primary">Connect Wallet</button>
+                <div id="walletInfo" class="wallet-info" style="display: none;">
+                    <span id="walletAddress"></span>
+                    <button id="disconnectWallet" class="btn-secondary">Disconnect</button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Registration Section -->
+            <section id="registrationSection" class="card">
+                <h2>Get Started</h2>
+                <p>Register anonymously to start earning tokens for your mood data</p>
+                <button id="registerBtn" class="btn-primary">Register Anonymously</button>
+            </section>
+
+            <!-- Mood Submission Section -->
+            <section id="moodSection" class="card" style="display: none;">
+                <h2>Daily Mood Check-in</h2>
+                <div class="mood-form">
+                    <div class="mood-item">
+                        <label>Overall Mood (1-10)</label>
+                        <input type="range" id="overallMood" min="1" max="10" value="5">
+                        <span id="overallMoodValue">5</span>
+                    </div>
+                    
+                    <div class="mood-item">
+                        <label>Anxiety Level (1-10)</label>
+                        <input type="range" id="anxietyLevel" min="1" max="10" value="5">
+                        <span id="anxietyValue">5</span>
+                    </div>
+                    
+                    <div class="mood-item">
+                        <label>Energy Level (1-10)</label>
+                        <input type="range" id="energyLevel" min="1" max="10" value="5">
+                        <span id="energyValue">5</span>
+                    </div>
+                    
+                    <div class="mood-item">
+                        <label>Sleep Quality (1-10)</label>
+                        <input type="range" id="sleepQuality" min="1" max="10" value="5">
+                        <span id="sleepValue">5</span>
+                    </div>
+                    
+                    <div class="mood-item">
+                        <label>Social Connection (1-10)</label>
+                        <input type="range" id="socialConnection" min="1" max="10" value="5">
+                        <span id="socialValue">5</span>
+                    </div>
+                    
+                    <div class="mood-item">
+                        <label>Stress Level (1-10)</label>
+                        <input type="range" id="stressLevel" min="1" max="10" value="5">
+                        <span id="stressValue">5</span>
+                    </div>
+                    
+                    <button id="submitMood" class="btn-primary">Submit Mood Data</button>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="card" style="display: none;">
+                <h2>Your Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Current Streak</h3>
+                        <div class="stat-value" id="currentStreak">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Submissions</h3>
+                        <div class="stat-value" id="totalSubmissions">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Tokens Earned</h3>
+                        <div class="stat-value" id="tokensEarned">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Days Active</h3>
+                        <div class="stat-value" id="daysActive">0</div>
+                    </div>
+                </div>
+                
+                <div class="mood-history">
+                    <h3>Recent Mood Trends</h3>
+                    <canvas id="moodChart" width="400" height="200"></canvas>
+                </div>
+            </section>
+
+            <!-- Community Insights Section -->
+            <section id="communitySection" class="card">
+                <h2>Community Insights</h2>
+                <div class="community-stats">
+                    <div class="community-stat">
+                        <h3>Today's Community Mood</h3>
+                        <div class="stat-value" id="communityMood">Loading...</div>
+                    </div>
+                    <div class="community-stat">
+                        <h3>Active Users Today</h3>
+                        <div class="stat-value" id="activeUsers">Loading...</div>
+                    </div>
+                </div>
+                
+                <div class="community-chart">
+                    <h3>Community Trends (Last 7 Days)</h3>
+                    <canvas id="communityChart" width="400" height="200"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>🔐 Your data is encrypted and private. Only you can decrypt your personal information.</p>
+            <p>Built with FHEVM for complete privacy preservation.</p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
